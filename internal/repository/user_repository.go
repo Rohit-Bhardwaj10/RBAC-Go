@@ -19,12 +19,10 @@ func (r *UserRepository) Create(user *model.User) error {
 	return r.db.Create(user).Error
 }
 
-// save user detail
 func (r *UserRepository) save(ctx context.Context, user *model.User) error {
 	return r.db.WithContext(ctx).Save(user).Error
 }
 
-// get all users
 func (r *UserRepository) GetAll(ctx context.Context) ([]model.User, error) {
 	var users []model.User
 	err := r.db.WithContext(ctx).Find(&users).Error
