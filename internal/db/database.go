@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	model "github.com/Rohit-Bhardwaj10/RBAC-Go/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -29,6 +30,14 @@ func connectDb() *gorm.DB {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("error connecting to database", err)
+	}
+	err = db.AutoMigrate(
+		&model.User{},
+		&model.Role{},
+		&model.RefreshToken{},
+	)
+	if err != nil {
+		log.Fatal("error migrating database", err)
 	}
 	log.Println("Successfully connected to the database")
 	return db

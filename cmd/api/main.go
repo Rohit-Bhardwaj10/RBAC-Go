@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Rohit-Bhardwaj10/RBAC-Go/database"
+	"github.com/Rohit-Bhardwaj10/RBAC-Go/internal/db"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -17,7 +17,7 @@ func loadEnv() {
 }
 
 func loadDatabase() {
-	database.InitDb()
+	db.InitDb()
 }
 
 func serveApplication() {
